@@ -1,0 +1,19 @@
+name: deployment workflow
+on:
+  push:
+    branches: [main]
+jobs:
+  job_one:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.terpconnect.umd.edu }}
+          username: ${{ secrets.kchong5463 }}
+          password: ${{ secrets.testing123 }}
+          port: ${{ secrets.22 }}
+          script: |
+            cd TestRepo
+            git pull
