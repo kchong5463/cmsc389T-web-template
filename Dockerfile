@@ -7,16 +7,14 @@
 
 FROM node:10-alpine
 
-RUN useradd -ms /bin/bash node
-
-RUN mkdir -p/home/node/ && chown -R node:node/home/node/app
+RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
-COPY *.java ./
-COPY junit-* ./
-
+COPY . .
+COPY --chown=node:node . .
 USER node
 
-RUN javac -cp "junit-4.10.jar:." *.java
+RUN npm install
+EXPOSE 8080
 
-COPY --chown=node:node . .
+CMD node app.js

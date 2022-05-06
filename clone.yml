@@ -9,9 +9,11 @@ jobs:
       - name: testing
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.terpconnect.umd.edu }}
-          username: ${{ secrets.kchong5463 }}
-          password: ${{ secrets.testing123 }}
-          port: ${{ secrets.22 }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
           script: |
-            git clone
+          touch /.ssh/known_hosts
+            ssh-keyscan -H github.com > ~/.ssh/known_hosts
+            git close http://github.com/kchong5463/cmsc389T-web-template.git
