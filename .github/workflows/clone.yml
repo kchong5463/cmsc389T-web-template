@@ -14,5 +14,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd ../pub/
+            ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+            cd /pub/${{ secrets.USERNAME }}
             git clone http://github.com/kchong5463/cmsc389T-web-template.git
